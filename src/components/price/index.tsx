@@ -1,7 +1,4 @@
 import { useContext } from 'react'
-import Uniswap from "@uniswap/sdk"
-import Mdex from "@mdex/heco-sdk"
-import Hokk from "@hokk/bsc-sdk"
 import { AppContext } from '../../state/Context'
 import { getUniPrice, getCakePrice, getMDexPrice } from '../../constants'
 
