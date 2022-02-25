@@ -1,57 +1,26 @@
 import { useContext } from 'react'
 import { AppContext } from '../../state/Context'
-import { getUniPrice, getCakePrice, getMDexPrice } from '../../constants'
-
-
+import UniPrice from './UniPrice'
+import CakePrice from './CakePrice'
+import MdexPrice from './MdexPrice'
 
 const Price = () => {
 
-    const { state, dispatch } = useContext(AppContext);
-   
+        const { state } = useContext(AppContext);
+
+
     return(<>
-    
-        {state.dex === 'uni'
-        
-        ?
-
-        getUniPrice
-
-        :
-
-        state.dex === 'cake'
-
-        ?
-
-        getCakePrice
-
-        :
-
-        getMDexPrice
-
+        {state.dex === 'uni' ?
+            <UniPrice /> :
+         state.dex === 'cake' ?
+            <CakePrice /> :
+         state.dex === 'mdex' ?
+            <MdexPrice /> :
+            <div />    
         }
-    
     </>)
-    
-/*    
-
-    if(state.dex === "uni"){
-
-        return (<>{getUniPrice}</>)
-
-    }else if(state.dex === "cake"){
-
-        return (<>{getCakePrice}</>)
-
-    }else if(state.dex === "mdex"){
-
-        return (<>{getMDexPrice}</>)
-
-    }
-
-*/    
 
 
-    
-} 
+}
 
 export default Price

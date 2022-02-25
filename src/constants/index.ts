@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { Uniswap } from "./Uniswap"
 import { Mdex } from "./Mdex"
 import { Hokk } from "./Pancake"
@@ -14,18 +13,13 @@ import { Hokk } from "./Pancake"
 
     export const getUniPrice = async () => {
 
-        try{
+
 
             const pair = await Uniswap.Fetcher.fetchPairData(HOKK, Uniswap.WETH[ETH_CHAIN_ID]);
             const route = new Uniswap.Route([pair], Uniswap.WETH[ETH_CHAIN_ID]);
             const priceUni = route.midPrice.toFixed(9);
             return priceUni
 
-        } catch(error) {
-
-            console.error(error)
-
-        }
 
         
 
@@ -33,29 +27,27 @@ import { Hokk } from "./Pancake"
 
     export const getCakePrice = async () => {
 
-        try{
+
         const pair = await Hokk.Fetcher.fetchPairData(HOKK_BSC, Hokk.WETH[BSC_CHAIN_ID]);
         const route = new Hokk.Route([pair], Hokk.WETH[BSC_CHAIN_ID]);
         const priceUni = route.midPrice.toFixed(9);
 
-        return priceUni
-        }catch(error){
-            console.error(error)
-        }
+        return Promise.resolve(priceUni)
+
     }
     
     export const getMDexPrice = async() => {
 
-        try{
-        const pair = await Hokk.Fetcher.fetchPairData(HOKK_BSC, Hokk.WETH[BSC_CHAIN_ID]);
-        const route = new Hokk.Route([pair], Hokk.WETH[BSC_CHAIN_ID]);
+
+        const pair = await Mdex.Fetcher.fetchPairData(HECO_HOKK, Hokk.WETH[BSC_CHAIN_ID]);
+        const route = new Mdex.Route([pair], Mdex.WETH[HECO_CHAIN_ID]);
         const priceUni = route.midPrice.toFixed(9);
 
         return priceUni
-        }catch(error){
-            console.error(error)
-        }
+
     }
+
+    console.log(getUniPrice())
     
 /*    
 
